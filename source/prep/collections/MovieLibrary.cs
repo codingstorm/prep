@@ -14,12 +14,17 @@ namespace prep.collections
 
     public IEnumerable<Movie> all_movies()
     {
-      return this.movies;
+        foreach (var movie in movies)
+        {
+            yield return movie; 
+        }
     }
 
     public void add(Movie movie)
     {
-      throw new NotImplementedException();
+        if (!movies.Contains(movie)) {
+            movies.Add(movie);
+        }
     }
 
     public IEnumerable<Movie> sort_all_movies_by_title_descending()
