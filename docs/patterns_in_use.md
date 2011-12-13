@@ -19,7 +19,6 @@
 * NegatingMatch
 
 ##Null Object
-
 * NeverMatches
 
 ##Specification
