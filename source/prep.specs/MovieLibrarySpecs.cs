@@ -223,9 +223,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
       {
-//        var criteria = Where<Movie>.has_a(x => x.production_studio).not.equal_to(ProductionStudio.Pixar);
-//        var results = sut.all_movies().all_items_matching(criteria);
-        var results = sut.all_movies().where(x => x.production_studio).not.equal_to(ProductionStudio.Pixar);
+        var criteria = Where<Movie>.has_a(x => x.production_studio).not.equal_to(ProductionStudio.Pixar);
+        var results = sut.all_movies().all_items_matching(criteria);
 
         results.ShouldNotContain(cars, a_bugs_life);
       };
@@ -276,7 +275,10 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-        var results = sut.sort_all_movies_by_title_descending();
+        var comparer = Sort<Movie>.by_descending(x => x.title);
+
+        var results = sut.all_movies().sort_all_using(comparer);
+
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
                                          pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,

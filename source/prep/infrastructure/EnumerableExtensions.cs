@@ -15,6 +15,13 @@ namespace prep.infrastructure
       return items.all_items_matching(criteria.matches);
     }
 
+    public static IEnumerable<Item> sort_all_using<Item>(this IEnumerable<Item> items, IComparer<Item> comparer)
+    {
+      var sorted = new List<Item>(items);
+      sorted.Sort(comparer);
+      return sorted;
+    }
+
     static IEnumerable<Item> all_items_matching<Item>(this IEnumerable<Item> items, Condition<Item> condition)
     {
       foreach (var item in items) if (condition(item)) yield return item;
