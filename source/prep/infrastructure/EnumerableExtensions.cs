@@ -24,5 +24,10 @@ namespace prep.infrastructure
     {
         return new MatchFilteringExtensionPoint<Item, PropertyType>(accessor);
     }
+
+    /*public static IEnumerable<Item> where <Item>(this IEnumerable<Item> items, IMatchA<Item> criteria)
+    {
+        reutrn new MatchExtensions
+    }*/
   }
 }
