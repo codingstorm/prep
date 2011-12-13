@@ -18,6 +18,10 @@
 * NegatingMatchFilteringExtensionPoint
 * NegatingMatch
 
+##Null Object
+
+* NeverMatches
+
 ##Specification
 * IsEqualToAny
 * FallsInRange
@@ -29,3 +33,4 @@
 ##Strategy
 * ComparableComparer
 * FixedComparer
+
