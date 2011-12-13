@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace prep.infrastructure
+namespace prep.infrastructure.sorting
 {
   public class FixedComparer<ItemToSort> : IComparer<ItemToSort>
   {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using prep.infrastructure.matching;
 
-namespace prep.infrastructure
+namespace prep.infrastructure.sorting
 {
   public class AccessorComparer<ItemToSort, PropertyType> : IComparer<ItemToSort>
   {

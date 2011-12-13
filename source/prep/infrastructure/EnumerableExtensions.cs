@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using prep.infrastructure.matching;
 
 namespace prep.infrastructure
@@ -22,7 +23,7 @@ namespace prep.infrastructure
       return sorted;
     }
 
-    static IEnumerable<Item> all_items_matching<Item>(this IEnumerable<Item> items, Condition<Item> condition)
+    static IEnumerable<Item> all_items_matching<Item>(this IEnumerable<Item> items, Func<Item,bool> condition)
     {
       foreach (var item in items) if (condition(item)) yield return item;
     }

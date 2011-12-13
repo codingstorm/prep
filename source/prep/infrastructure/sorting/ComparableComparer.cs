@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace prep.infrastructure
+namespace prep.infrastructure.sorting
 {
   public class ComparableComparer<ItemToCompare> : IComparer<ItemToCompare> where ItemToCompare : IComparable<ItemToCompare>
   {

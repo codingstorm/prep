@@ -1,7 +1,6 @@
 ﻿using System;
-using prep.infrastructure.matching;
 
-namespace prep.infrastructure
+namespace prep.infrastructure.sorting
 {
   public class Sort<ItemToSort>
   {
