@@ -7,12 +7,12 @@ namespace prep.infrastructure.matching
   {
     public static IMatchA<ItemToMatch> equal_to<ItemToMatch,PropertyType>(this MatchFilteringExtensionPoint<ItemToMatch,PropertyType> extension_point,PropertyType value)
     {
-      return equal_to_any(extension_point,value);
+        return equal_to_any(extension_point, value);
     }
 
     public static IMatchA<ItemToMatch> create_from<ItemToMatch,PropertyType>(this MatchFilteringExtensionPoint<ItemToMatch,PropertyType> extension_point,IMatchA<PropertyType> value_criteria)
     {
-      return new PropertyMatch<ItemToMatch, PropertyType>(extension_point.accessor, value_criteria);
+        return new PropertyMatch<ItemToMatch, PropertyType>(extension_point.accessor, extension_point.negate ? new NegatingMatch<PropertyType>(value_criteria) : value_criteria);
     }
 
     public static IMatchA<ItemToMatch> equal_to_any<ItemToMatch,PropertyType>(this MatchFilteringExtensionPoint<ItemToMatch,PropertyType> extension_point,params PropertyType[] values)
