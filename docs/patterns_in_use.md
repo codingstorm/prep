@@ -1,19 +1,31 @@
 #Patterns in use in the prep project
 
-##Adapter
-* AnonymousMatch
-
-##Decorator
-* NegatingMatch
-
-##Composite
-* OrMatch
-
 ##Abstract Factory
 * MatchFactory
 
+##Adapter
+* AnonymousMatch
+
+##Builder
+* ComparerBuilder
+
+##Composite
+* ChainedComparer
+* OrMatch
+
+##Decorator
+* ReverseComparer
+* NegatingMatchFilteringExtensionPoint
+* NegatingMatch
+
 ##Specification
-* IMatchA
+* IsEqualToAny
+* FallsInRange
 
 ##Static Gateway
+* Sort
 * Where
+
+##Strategy
+* ComparableComparer
+* FixedComparer
