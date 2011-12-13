@@ -19,5 +19,10 @@ namespace prep.infrastructure
     {
       foreach (var item in items) if (condition(item)) yield return item;
     }
+
+    public static MatchFilteringExtensionPoint<Item, PropertyType> where<Item, PropertyType>(this IEnumerable<Item> items, Accessor<Item, PropertyType> accessor)
+    {
+        return new MatchFilteringExtensionPoint<Item, PropertyType>(accessor);
+    }
   }
 }
