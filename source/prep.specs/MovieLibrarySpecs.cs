@@ -5,10 +5,9 @@ using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using prep.collections;
-using prep.infrastructure.matching;
-using prep.infrastructure.sorting;
-using prep.specs.utility;
 using prep.infrastructure;
+using prep.infrastructure.matching;
+using prep.specs.utility;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an collection of Movie. It exposes the ability to search,sort, and iterate over all of the movies that it contains.
@@ -21,8 +20,6 @@ using prep.infrastructure;
  *      -IList<T>
  *      -IEquatable<T>
  *      -IComparer<T>
- *      -Comparison<T> delegate type
- *      -Predicate<T> delegate type
  *      -Generics     
  * 
  * The primary goals of this exercise are to get you familiar with a couple of things:
@@ -76,7 +73,6 @@ namespace prep.specs
 
     public class when_iterating : movie_library_concern
     {
-
       Establish c = () =>
         Enumerable.Range(1, 100).each(x => movie_collection.Add(new Movie()));
 
@@ -85,11 +81,11 @@ namespace prep.specs
 
       It should_iterate = () =>
       {
-
       };
 
       static IEnumerable<Movie> results;
     }
+
     public class when_counting_the_number_of_movies : movie_library_concern
     {
       static int number_of_movies;
@@ -215,7 +211,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
-        var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to_any(ProductionStudio.Pixar,ProductionStudio.Disney);
+        var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to_any(ProductionStudio.Pixar,
+                                                                                 ProductionStudio.Disney);
 
         var results = sut.all_movies().all_items_matching(criteria);
 
@@ -241,7 +238,7 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
-        var criteria = Where<Movie>.has_a(x => x.date_published.Year).between(1982,2003);
+        var criteria = Where<Movie>.has_a(x => x.date_published.Year).between(1982, 2003);
 
         var results = sut.all_movies().all_items_matching(criteria);
 
@@ -267,8 +264,6 @@ namespace prep.specs
       };
     }
 
-      
-
     public class when_sorting_movies : concern_for_searching_and_sorting
     {
       /* Look at the potential method explosion that can start to occur as you start to sort on different criteria
@@ -280,8 +275,6 @@ namespace prep.specs
       {
         var results = sut.all_movies().order_by_descending(x => x.title);
 
-
-
         results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
                                          pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
                                          cars, a_bugs_life);
@@ -290,7 +283,6 @@ namespace prep.specs
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
       {
         var results = sut.all_movies().order_by(x => x.title);
-
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
                                          pirates_of_the_carribean, shrek, the_ring,
@@ -301,7 +293,6 @@ namespace prep.specs
       {
         var results = sut.all_movies().order_by_descending(x => x.date_published);
 
-
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
                                          pirates_of_the_carribean, a_bugs_life,
                                          indiana_jones_and_the_temple_of_doom);
@@ -310,7 +301,6 @@ namespace prep.specs
       It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
       {
         var results = sut.all_movies().order_by(x => x.date_published);
-
 
         results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
                                          pirates_of_the_carribean, cars, the_ring, shrek,
@@ -327,14 +317,13 @@ namespace prep.specs
         //Disney
         //Paramount
         var results = sut.all_movies().order_by(x => x.production_studio,
-                                      ProductionStudio.MGM,
-                                      ProductionStudio.Pixar,
-                                      ProductionStudio.Dreamworks,
-                                      ProductionStudio.Universal,
-                                      ProductionStudio.Disney,
-                                      ProductionStudio.Paramount)
-                                  .then_by(x => x.date_published);
-
+                                                ProductionStudio.MGM,
+                                                ProductionStudio.Pixar,
+                                                ProductionStudio.Dreamworks,
+                                                ProductionStudio.Universal,
+                                                ProductionStudio.Disney,
+                                                ProductionStudio.Paramount)
+          .then_by(x => x.date_published);
 
         /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings

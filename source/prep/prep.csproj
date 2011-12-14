@@ -65,6 +65,8 @@
     <Compile Include="collections\MovieTitleComparer.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
+    <Compile Include="infrastructure\public static ComparableEnumerableExtensions.cs" />
+    <Compile Include="infrastructure\SortedEnumerable.cs" />
     <Compile Include="infrastructure\sorting\ChainedComparer.cs" />
     <Compile Include="infrastructure\sorting\AccessorComparer.cs" />
     <Compile Include="infrastructure\sorting\ComparableComparer.cs" />
